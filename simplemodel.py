@@ -23,9 +23,9 @@ for i in range(len(text) - 1):
     transition[current_token_id][next_token_id] += 1
 
 generated_token = encode(prompt)
+current_token_id = generated_token[-1]
 
-for i in range(max_new_token - 1):
-    current_token_id = generated_token[-1]
+for i in range(max_new_token):
     logits = transition[current_token_id]
     total = max(sum(logits),1)
     logits = [logit / total for logit in logits]
